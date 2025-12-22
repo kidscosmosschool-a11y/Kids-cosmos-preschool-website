@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Kids Cosmos: trips</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+<style>
+/* ================= ROOT ================= */
+/* ================= ROOT ================= */
+:root {
+    --sky: #87ceeb;
+    --overlay: rgba(255, 255, 255, 0.4);
+    --radius: 12px;
+}
+
+/* ================= PAGE ================= */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--sky);
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Overlay to dim background */
+#overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--overlay);
+    z-index: 1;
+}
+
+/* Main container */
+#outdoorContainer {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    padding-top: 20px;
+    z-index: 2;
+}
+
+/* Card */
+.card {
+    position: absolute; /* for floating */
+    width: 180px;
+    height: 220px;
+    border-radius: var(--radius);
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    opacity: 0; /* initially hidden, shown via JS */
+    transition: transform 0.5s ease, top 0.5s ease, left 0.5s ease;
+}
+
+.card img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+}
+
+.card .caption {
+    padding: 8px;
+    font-size: 14px;
+    text-align: center;
+    color: #333;
+}
+
+/* Grid layout for after floating */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    opacity: 0;
+    transition: opacity 1s ease;
+    margin-top: 20px;
+}
+
+/* Floating cards animation keyframes (generic) */
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-600px) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media(max-width: 768px){
+    .card {
+        width: 140px;
+        height: 180px;
+    }
+    .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+    <div class="container-fluid bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+<!-- Top Bar Start -->
+<div class="container-fluid text-white py-2 px-4 topbar" style="background-color: #2bb0ed;">
+    <!-- Phone -->
+    <div class="phone">
+        <i class="fa fa-phone-alt me-2"></i> +977-986-0667648
+    </div>
+
+    <!-- Email (icon + text together) -->
+    <div class="mail">
+    <span><i class="fa fa-envelope me-2"></i> upadhyaya9sheelu@gmail.com</span>
+</div>
+
+    <!-- Social Icons -->
+    <div class="social">
+        <a href="https://facebook.com" target="_blank" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com" target="_blank" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com" target="_blank" class="text-white"><i class="fab fa-youtube"></i></a>
+    </div>
+</div>
+<!-- Top Bar End -->
+
+
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg navbar-light sticky-top px-4 px-lg-5 py-lg-0"
+     style="background-color:#eaf6ff;">
+
+    <!-- Logo -->
+    <a href="index.html" class="navbar-brand d-flex align-items-center">
+        <img src="img/logo.png" alt="Kids Cosmis School Logo"
+             style="height:55px; width:auto; margin-right:10px;">
+        <h1 class="m-0" style="color:#5f9ce6; font-size:26px;">Kids Cosmos School</h1>
+    </a>
+
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav mx-auto">
+
+            <a href="index.html" class="nav-item nav-link active" style="font-weight:500;">Home</a>
+            <a href="about.html" class="nav-item nav-link" style="font-weight:500;">About Us</a>
+            <a href="classes.html" class="nav-item nav-link" style="font-weight:500;">Classes</a>
+
+            <!-- Activities Dropdown -->
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="font-weight:500;">
+                    Activities
+                </a>
+                <div class="dropdown-menu border-0 shadow-sm" style="background-color:#ffffff;">
+                    <a href="art_crafts.html" class="dropdown-item" style="padding:10px 20px;">🎨 Art & Craft</a>
+                    <a href="music.html" class="dropdown-item" style="padding:10px 20px;">🎵 Music & Dance</a>
+                    <a href="sports.html" class="dropdown-item" style="padding:10px 20px;">⚽ Sports & Games</a>
+                    <a href="story.html" class="dropdown-item" style="padding:10px 20px;">📖 Storytelling</a>
+                    <a href="science.html" class="dropdown-item" style="padding:10px 20px;">🔬 Fun Science</a>
+                    <a href="trip.html" class="dropdown-item" style="padding:10px 20px;">🚌 Outdoor Trips</a>
+                    <a href="parents_day.html" class="dropdown-item" style="padding:10px 20px;">👨‍👩‍👧Parents Day</a>
+                    <a href="dramas.html" class="dropdown-item" style="padding:10px 20px;">🎬Dramas</a>
+            </div>
+            </div>
+            <a href="team.html" class="nav-item nav-link" style="font-weight:500;">Our Team</a>
+            <a href="gallery.html" class="nav-item nav-link" style="font-weight:500;">Gallery</a>
+            <a href="blog.html" class="nav-item nav-link" style="font-weight:500;">Blog</a>
+            <a href="contact.html" class="nav-item nav-link" style="font-weight:500;">Contact</a>
+        </div>
+
+        <!-- Enroll Button -->
+        <a href="admission.html" class="btn rounded-pill px-4 d-none d-lg-block"
+           style="background-color:#2bb0ed; color:white;">
+            Enroll Now <i class="fa fa-child ms-2"></i>
+        </a>
+    </div>
+</nav>
+<!-- Navbar End -->
+
+<div id="overlay"></div>
+<div id="outdoorContainer">
+
+    <!-- Cards (14 manual cards) -->
+    <div class="card" data-lane="left">
+        <img src="img/outdoor1.jpg" alt="Trip 1">
+        <div class="caption">Trip to Mountain</div>
+    </div>
+    <div class="card" data-lane="center">
+        <img src="img/outdoor2.jpg" alt="Trip 2">
+        <div class="caption">Picnic at Lake</div>
+    </div>
+    <div class="card" data-lane="right">
+        <img src="img/outdoor3.jpg" alt="Trip 3">
+        <div class="caption">Forest Exploration</div>
+    </div>
+    <div class="card" data-lane="left">
+        <img src="img/outdoor4.jpg" alt="Trip 4">
+        <div class="caption">Beach Fun</div>
+    </div>
+    <div class="card" data-lane="center">
+        <img src="img/outdoor5.jpg" alt="Trip 5">
+        <div class="caption">River Adventure</div>
+    </div>
+    <div class="card" data-lane="right">
+        <img src="img/outdoor6.jpg" alt="Trip 6">
+        <div class="caption">Nature Walk</div>
+    </div>
+    <div class="card" data-lane="left">
+        <img src="img/outdoor7.jpg" alt="Trip 7">
+        <div class="caption">Camping Night</div>
+    </div>
+    <div class="card" data-lane="center">
+        <img src="img/outdoor8.jpg" alt="Trip 8">
+        <div class="caption">Adventure Park</div>
+    </div>
+    <div class="card" data-lane="right">
+        <img src="img/outdoor9.jpg" alt="Trip 9">
+        <div class="caption">Waterfall Hike</div>
+    </div>
+    <div class="card" data-lane="left">
+        <img src="img/outdoor10.jpg" alt="Trip 10">
+        <div class="caption">Zoo Visit</div>
+    </div>
+    <div class="card" data-lane="center">
+        <img src="img/outdoor11.jpg" alt="Trip 11">
+        <div class="caption">City Tour</div>
+    </div>
+    <div class="card" data-lane="right">
+        <img src="img/outdoor12.jpg" alt="Trip 12">
+        <div class="caption">Farm Experience</div>
+    </div>
+    <div class="card" data-lane="left">
+        <img src="img/outdoor13.jpg" alt="Trip 13">
+        <div class="caption">Historical Site</div>
+    </div>
+    <div class="card" data-lane="center">
+        <img src="img/outdoor14.jpg" alt="Trip 14">
+        <div class="caption">Flower Garden</div>
+    </div>
+
+    <!-- Grid container after floating -->
+    <div class="card-grid" id="finalGrid"></div>
+</div>
+
+
+<script>
+const cards = document.querySelectorAll('#outdoorContainer .card');
+const finalGrid = document.getElementById('finalGrid');
+
+// Lanes coordinates (left, center, right)
+const lanes = {
+    left: 20,
+    center: window.innerWidth/2 - 90,
+    right: window.innerWidth - 200
+};
+
+let laneQueues = {left: [], center: [], right: []};
+
+// Initialize lane queues
+cards.forEach(card => {
+    const lane = card.dataset.lane;
+    laneQueues[lane].push(card);
+});
+
+// Function to animate floating in a lane
+function floatLane(lane){
+    if(laneQueues[lane].length === 0) return;
+
+    const card = laneQueues[lane].shift();
+    card.style.left = lanes[lane] + 'px';
+    card.style.top = window.innerHeight + 'px';
+    card.style.opacity = 1;
+
+    // Random speed for variety
+    const speed = 4000 + Math.random()*500;
+
+    const floatInterval = setInterval(() => {
+        const currentTop = parseFloat(card.style.top);
+        if(currentTop <= -250){
+            clearInterval(floatInterval);
+            // Add to final grid
+            finalGrid.appendChild(card);
+            card.style.position = 'relative';
+            card.style.top = '0';
+            card.style.left = '0';
+            card.style.opacity = 1;
+            card.style.transition = 'all 0.5s ease';
+            floatLane(lane); // next in lane
+        } else {
+            card.style.top = currentTop - 4 + 'px';
+        }
+    }, speed/200);
+}
+
+// Start floating for all lanes simultaneously
+['left','center','right'].forEach(lane => floatLane(lane));
+
+// Show grid after all cards finished
+setTimeout(()=>{
+    finalGrid.style.opacity = 1;
+}, 8000); 
+overlay.style.display = 'none';
+</script>
+
+<!-- Footer Start -->
+<div class="container-fluid text-white footer pt-5 mt-5 wow fadeIn"
+     data-wow-delay="0.1s"
+     style="background: linear-gradient(135deg, #2bb0ed, #5f9ce6);">
+
+    <div class="container py-5">
+        <div class="row g-5">
+
+            <!-- Contact -->
+            <div class="col-lg-3 col-md-6">
+                <h3 class="text-white mb-4">Get In Touch</h3>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Saraswati Nagar Marga, Chabahil, Kathmandu</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+977 986-0667648</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>upadhyaya9sheelu@gmail.com</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social me-1" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social me-1" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-light btn-social me-1" href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-3 col-md-6">
+                <h3 class="text-white mb-4">Quick Links</h3>
+                <a class="btn btn-link text-white-50" href="about.html">About Us</a>
+                <a class="btn btn-link text-white-50" href="classes.html">Classes</a>
+                <a class="btn btn-link text-white-50" href="activities.html">Activities</a>
+                <a class="btn btn-link text-white-50" href="gallery.html">Gallery</a>
+                <a class="btn btn-link text-white-50" href="contact.html">Contact Us</a>
+            </div>
+
+            <!-- Gallery -->
+            <div class="col-lg-3 col-md-6">
+                <h3 class="text-white mb-4">
+                    <a class="text-white text-decoration-none" href="gallery.html">Photo Gallery</a>
+                </h3>
+                <div class="row g-2 pt-2">
+                    <div class="col-4"><img class="img-fluid rounded bg-light p-1" src="img/1.jpg"></div>
+                    <div class="col-4"><img class="img-fluid rounded bg-light p-1" src="img/32.jpg"></div>
+                    <div class="col-4"><img class="img-fluid rounded bg-light p-1" src="img/3.jpg"></div>
+                    <div class="col-4"><img class="img-fluid rounded bg-light p-1" src="img/4.jpg"></div>
+                    <div class="col-4"><img class="img-fluid rounded bg-light p-1" src="img/11.jpg"></div>
+                    <div class="col-4"><img class="img-fluid rounded bg-light p-1" src="img/21.jpg"></div>
+                </div>
+            </div>
+
+            <!-- School Info -->
+            <div class="col-lg-3 col-md-6">
+                <h3 class="text-white mb-4">School Information</h3>
+                <p><i class="fa fa-clock me-2"></i><strong>Office Hours</strong></p>
+                <p>Sunday – Friday<br>9:00 AM – 4:00 PM</p>
+                <p><i class="fa fa-calendar-check me-2"></i><strong>Admissions</strong></p>
+                <p>Admissions open throughout the year.</p>
+                <a href="contact.html" class="btn mt-2" style="background:#2bb0ed;color:white;">
+                    Contact School
+                </a>
+            </div>
+
+        </div> 
+    </div> 
+
+    <!-- Copyright -->
+    <div class="container">
+        <div class="border-top pt-4" style="border-color: rgba(255,255,255,.3);">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    &copy; <strong>Kids Cosmos School</strong>. All Rights Reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    Designed & Developed by <strong>Aspire Team</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Footer End -->
+
+
+        <!-- Back to Top -->
+        <a href="#"
+            class="btn btn-lg btn-lg-square back-to-top"
+            style="background:#2bb0ed; color:white;">
+                <i class="bi bi-arrow-up"></i>
+</a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
+

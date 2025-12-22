@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parents Day Memories</title>
+
+<style>
+/* ========== Root Variables ========== */
+:root {
+    --sky: #87ceeb;
+    --overlay: rgba(255,255,255,0.25);
+    --page-bg: #ffffff;
+    --spine-color: #1e90ff;
+    --book-width: 90%;
+    --book-height: 80vh;
+}
+
+/* ========== Body & Background ========== */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--sky);
+    overflow-x: hidden;
+    position: relative;
+}
+
+#overlay-balloons {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    pointer-events:none;
+}
+
+/* Balloon Styles */
+.balloon {
+    position: absolute;
+    font-size: 12px;
+    animation: floatBalloon linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes floatBalloon {
+    0% { transform: translateY(100vh); }
+    100% { transform: translateY(-10vh); }
+}
+
+/* ========== Back Button ========== */
+#backButton {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    font-size: 2rem;
+    color: white;
+    background: rgba(30,144,255,0.7);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    z-index: 20;
+    cursor: pointer;
+}
+
+/* ========== Book Container ========== */
+#bookContainer {
+    position: relative;
+    width: var(--book-width);
+    max-width: 1000px;
+    height: var(--book-height);
+    perspective: 2000px;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+/* ========== Pages ========== */
+.page {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: var(--page-bg);
+    box-shadow: 0 8px 25px rgba(30,144,255,0.7);
+    border: 2px solid #1e90ff;
+    transform-origin: left;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-left: 2px solid var(--spine-color);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+}
+
+.page img {
+    width: 66%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.page .caption {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+}
+
+/* ========== Navigation Arrows ========== */
+.nav-arrow {
+    position: absolute;
+    bottom: 10px;
+    font-size: 2rem;
+    color: white;
+    background: rgba(30,144,255,0.7);
+    border-radius: 50%;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 15;
+    transition: background 0.3s;
+}
+
+.nav-arrow:hover {
+    background: rgba(30,144,255,0.9);
+}
+
+#prev { left: 20px; }
+#next { right: 20px; }
+
+/* ========== Responsive ========== */
+@media(max-width:768px){
+    #bookContainer {
+        width: 95%;
+        height: 70vh;
+    }
+    .page {
+        width: 70%;
+    }
+    .page img {
+        width: 90%;
+    }
+    .page .caption {
+        font-size: 16px;
+    }
+    .nav-arrow { font-size: 1.5rem; padding: 8px 12px; }
+    #backButton { font-size: 1.5rem; width: 40px; height: 40px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Balloon Overlay -->
+<div id="overlay-balloons"></div>
+
+<!-- Back Button -->
+<a href="index.html" id="backButton">&#8592;</a>
+
+<!-- Book Container -->
+<div id="bookContainer">
+    <!-- Pages: You can add/remove pages easily -->
+    <div class="page" style="z-index:10;">
+        <img src="img/performance1.jpg" alt="Performance 1">
+        <div class="caption">Dance Performance - Jan 5, 2025</div>
+    </div>
+    <div class="page" style="z-index:9;">
+        <img src="img/performance2.jpg" alt="Performance 2">
+        <div class="caption">Music Recital - Jan 5, 2025</div>
+    </div>
+    <div class="page" style="z-index:8;">
+        <img src="img/performance3.jpg" alt="Performance 3">
+        <div class="caption">Drama Skit - Jan 5, 2025</div>
+    </div>
+    <div class="page" style="z-index:7;">
+        <img src="img/performance4.jpg" alt="Performance 4">
+        <div class="caption">Choir Singing - Jan 5, 2025</div>
+    </div>
+    <div class="page" style="z-index:6;">
+        <img src="img/performance5.jpg" alt="Performance 5">
+        <div class="caption">Art Performance - Jan 5, 2025</div>
+    </div>
+        <div class="page" style="z-index:5;">
+        <img src="img/performance5.jpg" alt="Performance 5">
+        <div class="caption">Art Performance - Jan 5, 2025</div>
+    </div>
+        <div class="page" style="z-index:4;">
+        <img src="img/performance5.jpg" alt="Performance 5">
+        <div class="caption">Art Performance - Jan 5, 2025</div>
+    </div>
+        <div class="page" style="z-index:3;">
+        <img src="img/performance5.jpg" alt="Performance 5">
+        <div class="caption">Art Performance - Jan 5, 2025</div>
+    </div>
+        <div class="page" style="z-index:2;">
+        <img src="img/performance5.jpg" alt="Performance 5">
+        <div class="caption">Art Performance - Jan 5, 2025</div>
+    </div>
+        <div class="page" style="z-index:1;">
+        <img src="img/performance5.jpg" alt="Performance 5">
+        <div class="caption">Art Performance - Jan 5, 2025</div>
+</div>
+
+<!-- Navigation -->
+<div id="prev" class="nav-arrow">&#8592;</div>
+<div id="next" class="nav-arrow">&#8594;</div>
+
+<script>
+// ================= Balloon Animation =================
+const balloonContainer = document.getElementById('overlay-balloons');
+const balloonSymbols = ['🎈','🎈','🎈','🎈','🎈','🎈'];
+for(let i=0;i<50;i++){
+    const b = document.createElement('div');
+    b.className = 'balloon';
+    b.innerText = balloonSymbols[Math.floor(Math.random()*balloonSymbols.length)];
+    b.style.left = Math.random()*100 + 'vw';
+    b.style.fontSize = (10+Math.random()*15) + 'px';
+    b.style.animationDuration = (5+Math.random()*8) + 's';
+    b.style.opacity = Math.random()*0.6 + 0.4;
+    balloonContainer.appendChild(b);
+}
+
+// ================= Book Flipping =================
+const pages = document.querySelectorAll('.page');
+let current = 0;
+
+function showPage(index){
+    pages.forEach((page,i)=>{
+        if(i<index){
+            page.style.transform = 'rotateY(-180deg)';
+        } else {
+            page.style.transform = 'rotateY(0deg)';
+        }
+    });
+}
+
+// Next button
+document.getElementById('next').addEventListener('click',()=>{
+    if(current<pages.length) current++;
+    showPage(current);
+});
+
+// Previous button
+document.getElementById('prev').addEventListener('click',()=>{
+    if(current>0) current--;
+    showPage(current);
+});
+
+// Initialize
+showPage(current);
+</script>
+
+</body>
+</html>
