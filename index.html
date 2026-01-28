@@ -265,58 +265,57 @@
             <!-- Text Content -->
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s"
                  style="display:flex; flex-direction:column; justify-content:center; min-height:850px;">
+
                 <h1 class="mb-4" style="color:#5f9ce6;">
                     About Kids Cosmis School 🌟
                 </h1>
 
                 <p style="font-size:16px;">
                     <strong>Kids Cosmis School</strong> is a trusted and joyful learning home for young minds,
-                    proudly educating children from <strong>Playgroup to Class 4</strong>.  
+                    proudly educating children from <strong>Playgroup to Class 4</strong>.
                     We nurture every child’s unique talents and help them reach their full potential in a
                     safe, supportive, and stimulating environment.
                 </p>
 
                 <p style="font-size:16px;">
-                    Our school focuses on <strong>learning through fun, creativity, and discovery</strong>.  
-                    Children explore a wide variety of activities including <strong>art & craft, music, dance,
-                    sports, storytelling, science experiments, outdoor adventures, and technology learning</strong>.  
-                    Every activity is designed to boost confidence, social skills, and academic curiosity.
+                    Our school focuses on <strong>learning through fun, creativity, and discovery</strong>.
+                    Children explore activities such as <strong>art & craft, music, dance, sports,
+                    storytelling, science experiments, outdoor adventures, and technology learning</strong>.
+                    These experiences build confidence, curiosity, and strong social skills.
                 </p>
 
                 <p style="font-size:16px;">
-                    🏆 <strong>Award-Winning Excellence:</strong>  
-                    Kids Cosmis School has received numerous awards for <strong>academic excellence,
-                    innovative teaching methods, cultural programs, and overall child development</strong>.  
-                    Our students regularly shine in local and national competitions, exhibitions, and performances.
+                    🏆 <strong>Award-Winning Excellence:</strong>
+                    Kids Cosmis School has received multiple awards for <strong>academic excellence,
+                    innovative teaching, cultural programs, and holistic child development</strong>.
+                    Our students regularly excel in competitions and exhibitions.
                 </p>
 
                 <p style="font-size:16px;">
-                    🌈 <strong>Facilities & Environment:</strong>  
-                    Our bright, modern classrooms are complemented by safe playgrounds, creative studios,
-                    and well-equipped libraries. We provide a nurturing environment that encourages children
-                    to explore, experiment, and express themselves freely.
+                    🌈 <strong>Facilities & Environment:</strong>
+                    Bright classrooms, safe playgrounds, creative studios, and a well-equipped library
+                    provide children with an inspiring and secure learning space.
                 </p>
 
                 <p style="font-size:16px;">
-                    🤝 <strong>Community & Values:</strong>  
-                    At Kids Cosmis School, we emphasize kindness, respect, teamwork, and social responsibility.  
-                    Our children learn to care for each other, their community, and the environment through
-                    hands-on projects and community activities.
+                    🤝 <strong>Community & Values:</strong>
+                    We emphasize kindness, respect, teamwork, and responsibility.
+                    Children actively participate in community and environmental projects.
                 </p>
 
                 <p style="font-size:16px;">
-                    🎉 <strong>Fun & Memorable Experiences:</strong>  
-                    Every day is an adventure filled with creative workshops, field trips, storytelling sessions,
-                    and themed events that make learning exciting. Our goal is to make every child look forward
-                    to school and cherish every moment.
+                    🎉 <strong>Fun & Memorable Experiences:</strong>
+                    From workshops and field trips to themed events and storytelling sessions,
+                    every day is designed to make learning joyful and meaningful.
                 </p>
 
                 <p style="font-size:16px;">
-                <p style="font-size:16px;">
-                🌟 <strong>Global Exposure & Innovation:</strong>  
-                Kids Cosmis School encourages curiosity beyond the classroom, offering workshops, STEM activities,
-                and international cultural exchange programs that inspire children to become creative, confident, and globally aware citizens.
+                    🌍 <strong>Global Exposure & Innovation:</strong>
+                    Through STEM activities, workshops, and cultural exchange programs,
+                    we inspire children to become confident, creative, and globally aware.
                 </p>
+
+                <!-- Button + Principal -->
                 <div class="row g-4 align-items-center mt-4">
                     <div class="col-sm-6">
                         <a class="btn rounded-pill py-3 px-5"
@@ -330,7 +329,7 @@
                         <div class="d-flex align-items-center">
                             <img class="rounded-circle flex-shrink-0"
                                  src="img/user.jpeg"
-                                 alt=""
+                                 alt="Principal"
                                  style="width:45px; height:45px;">
                             <div class="ms-3">
                                 <h6 class="mb-1" style="color:#5f9ce6;">Principal</h6>
@@ -339,53 +338,48 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
-            <!-- Video & Images Circles -->
+            <!-- Video Section -->
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="row">
-            <!-- Center Big Video -->
-            <div class="col-12 text-center">
-                <div style="width:75%; margin:auto; border-radius:50%; overflow:hidden; background:#eaf6ff; padding:12px; position:relative;">
-                    <video id="mainVideo" autoplay loop playsinline muted style="width:100%; border-radius:50%;">
-                        <source src="img/video1.mp4" type="video/mp4">
-                    </video>
-                    
-                    <!-- Mute/Unmute Button -->
-                    <button id="soundBtn" 
-                            style="position:absolute; bottom:10px; right:10px; padding:6px 12px; border:none; border-radius:5px; background:#2bb0ed; color:white; cursor:pointer;">
-                        🔊
-                    </button>
-                </div>
-            </div>
+                <div class="text-center">
 
-            <script>
-                const video = document.getElementById('mainVideo');
-                const soundBtn = document.getElementById('soundBtn');
+                    <div style="
+                        width:85%;
+                        margin:auto;
+                        border-radius:20px;
+                        overflow:hidden;
+                        background:#eaf6ff;
+                        padding:14px;
+                        position:relative;
+                        box-shadow:0 10px 30px rgba(0,0,0,0.12);
+                    ">
+                        <video id="mainVideo"
+                               autoplay
+                               loop
+                               playsinline
+                               muted
+                               style="width:100%; border-radius:15px;">
+                            <source src="img/video1.mp4" type="video/mp4">
+                        </video>
 
-                soundBtn.addEventListener('click', () => {
-                    video.muted = !video.muted; // Toggle mute
-                    soundBtn.textContent = video.muted ? '🔇' : '🔊';
-                });
-            </script>
-
-
-
-
-                    <!-- Left Image -->
-                    <div class="col-6 text-start" style="margin-top:-150px;">
-                        <div style="border-radius:50%; overflow:hidden; background:#eaf6ff; padding:10px;">
-                            <img src="img/10.jpg" alt="Activity 1" 
-                                 style="width:100%; border-radius:50%;">
-                        </div>
-                    </div>
-
-                    <!-- Right Image -->
-                    <div class="col-6 text-end" style="margin-top:-150px;">
-                        <div style="border-radius:50%; overflow:hidden; background:#eaf6ff; padding:10px;">
-                            <img src="img/3.jpg" alt="Activity 2" 
-                                 style="width:100%; border-radius:50%;">
-                        </div>
+                        <!-- Sound Button -->
+                        <button id="soundBtn"
+                                style="
+                                    position:absolute;
+                                    bottom:15px;
+                                    right:15px;
+                                    padding:8px 14px;
+                                    border:none;
+                                    border-radius:8px;
+                                    background:#2bb0ed;
+                                    color:white;
+                                    font-size:16px;
+                                    cursor:pointer;
+                                ">
+                            🔊
+                        </button>
                     </div>
 
                 </div>
@@ -395,6 +389,16 @@
     </div>
 </div>
 <!-- About End -->
+
+<script>
+    const video = document.getElementById('mainVideo');
+    const soundBtn = document.getElementById('soundBtn');
+
+    soundBtn.addEventListener('click', () => {
+        video.muted = !video.muted;
+        soundBtn.textContent = video.muted ? '🔇' : '🔊';
+    });
+</script>
 
 
 <!-- Call To Action Start -->
