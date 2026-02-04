@@ -1,0 +1,10 @@
+{
+  "name": "kids-cosmos-website",
+  "version": "1.0.0",
+  "description": "Kids Cosmos School Website",
+  "scripts": {
+    "build": "node generate-blog-data.js"
+  },
+  "author": "Kids Cosmos School",
+  "license": "ISC"
+}

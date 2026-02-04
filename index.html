@@ -676,83 +676,122 @@
 <!-- Testimonials End -->
 
 
- <!-- Blog Section Start -->
+<!-- Blog Section Start - WITH NETLIFY CMS -->
 <div class="container-fluid py-5" style="background:#f0f9ff;">
     <div class="container">
 
         <!-- Section Heading -->
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 650px;">
-            <h1 class="mb-3" style="color:#2bb0ed;">Child Care & Parenting Blogs</h1>
+            <h1 class="mb-3" style="color:#2bb0ed;">Latest From Our Blog</h1>
             <p style="font-size:16px;">
-                Helpful insights, tips, and guidance for parents to support their child’s
+                Helpful insights, tips, and guidance for parents to support their child's
                 learning, growth, and emotional well-being.
             </p>
         </div>
 
+        <!-- Loading State -->
+        <div id="home-blog-loading" class="text-center py-4">
+            <p>Loading latest posts...</p>
+        </div>
+
         <!-- Blog Cards -->
-        <div class="row g-4">
+        <div id="home-blog-grid" class="row g-4" style="display: none;">
+            <!-- Blog cards will be inserted here by JavaScript -->
+        </div>
 
-            <!-- Blog 1 -->
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="bg-white rounded shadow h-100 overflow-hidden">
-                    <img src="img/child.avif" class="img-fluid w-100" alt="Child Learning">
-                    <div class="p-4">
-                        <h5 class="mb-3" style="color:#2bb0ed;">
-                            Importance of Early Childhood Education
-                        </h5>
-                        <p>
-                            Early education builds strong foundations for learning, confidence,
-                            communication, and social skills in young children.
-                        </p>
-                        <a href="blog1.html" class="btn btn-outline-primary rounded-pill px-4">
-                            View More
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Blog 2 -->
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="bg-white rounded shadow h-100 overflow-hidden">
-                    <img src="img/habits.jpg" class="img-fluid w-100" alt="Healthy Habits">
-                    <div class="p-4">
-                        <h5 class="mb-3" style="color:#2bb0ed;">
-                            Developing Healthy Habits in Children
-                        </h5>
-                        <p>
-                            Simple daily routines like proper sleep, nutrition, and playtime
-                            help children grow healthier and happier.
-                        </p>
-                        <a href="blog2.html" class="btn btn-outline-primary rounded-pill px-4">
-                            View More
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Blog 3 -->
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="bg-white rounded shadow h-100 overflow-hidden">
-                    <img src="img/parents.jpg" class="img-fluid w-100" alt="Parent Teacher">
-                    <div class="p-4">
-                        <h5 class="mb-3" style="color:#2bb0ed;">
-                            Role of Parents & Teachers Together
-                        </h5>
-                        <p>
-                            When parents and teachers work together, children feel more secure,
-                            motivated, and confident in learning.
-                        </p>
-                        <a href="blog3.html" class="btn btn-outline-primary rounded-pill px-4">
-                            View More
-                        </a>
-                    </div>
-                </div>
-            </div>
-
+        <!-- View All Button -->
+        <div class="text-center mt-5">
+            <a href="blog.html" class="btn rounded-pill px-5 py-3" style="background:#2bb0ed; color:white;">
+                View All Blog Posts <i class="fa fa-arrow-right ms-2"></i>
+            </a>
         </div>
     </div>
 </div>
 <!-- Blog Section End -->
+
+
+<!-- Netlify Identity Widget -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+<!-- Blog API -->
+<script src="js/blog-api.js"></script>
+
+<!-- Load Latest Blogs on Homepage -->
+<script>
+    async function loadLatestBlogsOnHome() {
+        const loading = document.getElementById('home-blog-loading');
+        const grid = document.getElementById('home-blog-grid');
+        
+        try {
+            const posts = await getBlogPosts();
+            const latest = posts.slice(0, 3); // Show latest 3 posts
+            
+            if (latest.length === 0) {
+                loading.innerHTML = '<p>No blog posts yet. Check back soon!</p>';
+                return;
+            }
+            
+            loading.style.display = 'none';
+            grid.style.display = 'flex';
+            
+            grid.innerHTML = latest.map((post) => {
+                const imageUrl = post.image || 'img/child.avif';
+                const excerpt = post.excerpt || truncateText(post.body, 120);
+                
+                return `
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="bg-white rounded shadow h-100 overflow-hidden">
+                            <img src="${imageUrl}" 
+                                 class="img-fluid w-100" 
+                                 alt="${post.title}"
+                                 style="height: 250px; object-fit: cover;"
+                                 onerror="this.src='img/child.avif'" />
+                            <div class="p-4">
+                                <div class="mb-2">
+                                    <small style="color: #666;">
+                                        <i class="far fa-calendar-alt me-2"></i>
+                                        ${formatDateShort(post.date)}
+                                    </small>
+                                    ${post.category ? `<span style="background:#2bb0ed; color:white; padding:3px 10px; border-radius:15px; font-size:12px; margin-left:10px;">${post.category}</span>` : ''}
+                                </div>
+                                <h5 class="mb-3" style="color:#2bb0ed;">
+                                    ${post.title}
+                                </h5>
+                                <p style="color:#666;">
+                                    ${excerpt}
+                                </p>
+                                <a href="blog_post.html?slug=${post.slug}" class="btn btn-outline-primary rounded-pill px-4">
+                                    Read More <i class="fa fa-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+        } catch (error) {
+            loading.innerHTML = '<p style="color: #dc3545;">Unable to load blog posts.</p>';
+            console.error('Error loading latest blogs:', error);
+        }
+    }
+    
+    // Load when page loads
+    if (document.getElementById('home-blog-grid')) {
+        document.addEventListener('DOMContentLoaded', loadLatestBlogsOnHome);
+    }
+    
+    // Netlify Identity
+    if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+            if (!user) {
+                window.netlifyIdentity.on("login", () => {
+                    document.location.href = "/admin/";
+                });
+            }
+        });
+    }
+</script>
+
 
 <!-- Call To Action -->
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
