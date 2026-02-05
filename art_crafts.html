@@ -136,29 +136,48 @@
 
 /* ================= IMAGE PLACEHOLDER (REAL IMAGE READY) ================= */
 .art-img {
-    width: 100%;
-    height: 180px;
+    /* 1. Full Fit Layout */
+    width: 100%;             /* Changed from 95% to full width */
+    height: 200px;           /* Slightly taller for better visibility */
+    position: relative;      /* Essential for positioning text behind image */
+    
+    /* 2. Aesthetics */
     border-radius: 12px;
-    background: #f1f7fb;  /* neutral placeholder */
-    overflow: hidden;
+    background: #f1f7fb;     /* Neutral placeholder background */
+    overflow: hidden;        /* Clips the image to the rounded corners */
     margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Subtle modern shadow */
 }
 
-/* Real image support */
+/* 3. The Placeholder Text */
+.art-img::before {
+    content: "Image coming soon";
+    font-size: 14px;
+    font-weight: 500;
+    color: #9bb8d3;
+    
+    /* Center the text perfectly */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;             /* Sits behind the image */
+}
+
+/* 4. The Real Image */
 .art-img img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;       
+    display: block;          
+    position: relative;      
+    z-index: 1;              
+    transition: transform 0.3s ease; /* Smooth hover effect preparation */
 }
 
-/* Optional subtle placeholder hint */
-.art-img::after {
-    content: "Image coming soon";
-    font-size: 14px;
-    color: #9bb8d3;
+/* Optional: Slight zoom on hover for a premium feel */
+.art-img:hover img {
+    transform: scale(1.05);
 }
 
 /* ================= TEXT ================= */
@@ -218,7 +237,7 @@
 
     <!-- Email (icon + text together) -->
     <div class="mail">
-    <span><i class="fa fa-envelope me-2"></i> upadhyaya9sheelu@gmail.com</span>
+    <span><i class="fa fa-envelope me-2"></i> kidscosmosschool@gmail.com</span>
 </div>
 
     <!-- Social Icons -->
@@ -270,7 +289,7 @@
                 </div>
             </div>
 
-            <a href="team.html" class="nav-item nav-link" style="font-weight:500;">Our Team</a>
+         
             <a href="gallery.html" class="nav-item nav-link" style="font-weight:500;">Gallery</a>
             <a href="blog.html" class="nav-item nav-link" style="font-weight:500;">Blog</a>
             <a href="contact.html" class="nav-item nav-link" style="font-weight:500;">Contact</a>
@@ -297,32 +316,32 @@
 
     <div class="art-header wow fadeInDown">
         <h1>Art & Craft Explosion 🎨</h1>
-        <p>Creativity begins with freedom, color, and confidence.</p>
+        <p>A hands-on space for colors and textures. These activities refine fine motor skills and help children turn their inner ideas into physical creations.</p>
     </div>
 
     <div class="art-grid">
         <div class="art-card wow fadeInUp" data-wow-delay="0.1s">
-            <div class="art-img"><img src="img/art1.jpg" alt="Creative Art"></div>
+            <div class="art-img"><img src="img/school images/creative.jpg" alt="Creative Art"></div>
             <h3>Creative Freedom</h3>
         </div>
 
         <div class="art-card wow fadeInUp" data-wow-delay="0.2s">
-            <div class="art-img"><img src="img/art1.jpg" alt="Creative Art"></div>
+            <div class="art-img"><img src="img/school images/color.jpg" alt="Creative Art"></div>
             <h3>Color Confidence</h3>
         </div>
 
         <div class="art-card wow fadeInUp" data-wow-delay="0.3s">
-            <div class="art-img"><img src="img/art1.jpg" alt="Creative Art"></div>
+            <div class="art-img"><img src="img/school images/imagination.jpg" alt="Creative Art"></div>
             <h3>Imagination Boost</h3>
         </div>
 
         <div class="art-card wow fadeInUp" data-wow-delay="0.4s">
-            <div class="art-img"><img src="img/art1.jpg" alt="Creative Art"></div>
+            <div class="art-img"><img src="img/school images/handsonlearning.jpg" alt="Creative Art"></div>
             <h3>Hands-on Learning</h3>
         </div>
 
         <div class="art-card wow fadeInUp" data-wow-delay="0.5s">
-            <div class="art-img"><img src="img/art1.jpg" alt="Creative Art"></div>
+            <div class="art-img"><img src="img/school images/littlecamps.jpg" alt="Creative Art"></div>
             <h3>Proud Little Artists</h3>
         </div>
     </div>

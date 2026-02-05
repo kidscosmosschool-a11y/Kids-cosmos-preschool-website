@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admission / Registration Form</title>
+<!-- jsPDF library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init("-YtrZDBjhiKIh36pz"); 
+</script>
+
+<style>
+body {
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background:#f2f8fc;
+    margin:0;
+    padding:0;
+    color:#333;
+}
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 6px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    position: relative;
+}
+h1 {
+    text-align:center;
+    color:#2b6fa3;
+    margin-bottom:10px;
+}
+h2 {
+    color:#2b6fa3;
+    border-bottom:1px solid #dbeaf5;
+    padding-bottom:5px;
+    margin-top:25px;
+    font-size:18px;
+}
+label {
+    display:block;
+    margin-top:12px;
+    font-weight:600;
+    font-size:14px;
+}
+input, select, textarea {
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border-radius:4px;
+    border:1px solid #cfdfea;
+    font-size:14px;
+}
+textarea { resize: vertical; }
+.row { display:flex; flex-wrap:wrap; gap:15px; }
+.col { flex:1; min-width:200px; }
+button {
+    margin-top:25px;
+    width:100%;
+    padding:14px;
+    background:#2b6fa3;
+    color:#fff;
+    font-size:16px;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+}
+button:hover { background:#245f8a; }
+.success-msg {
+    display:none;
+    margin-top:25px;
+    background:#e9f7ef;
+    border:1px solid #b7e4c7;
+    padding:20px;
+    border-radius:4px;
+    color:#155724;
+    text-align:center;
+}
+.back-arrow {
+    position:absolute;
+    top:20px;
+    left:20px;
+    font-size:24px;
+    color:#2b6fa3;
+    text-decoration:none;
+    font-weight:bold;
+}
+.back-arrow:hover { color:#245f8a; }
+
+#previewCopy{
+    display:none;
+    margin-top:30px;
+    background:#f9f9f9;
+    padding:20px;
+    border:1px solid #ccc;
+}
+.preview-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+.preview-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+.preview-table td:first-child {
+    width: 40%;
+    background: #f5f5f5;
+    font-weight: bold;
+}
+.section-header {
+    background: #2b6fa3;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<a href="index.html" class="back-arrow">&#8592; Back</a>
+
+<h1>Admission / Registration Form</h1>
+
+<!-- Child Details -->
+<h2>Child's Details</h2>
+<div class="row">
+    <div class="col"><label>Date of Birth</label><input type="date" id="dob"></div>
+    <div class="col"><label>Gender</label>
+        <select id="gender">
+            <option>Male</option>
+            <option>Female</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col"><label>First Name</label><input type="text" id="child_fname"></div>
+    <div class="col"><label>Middle Name</label><input type="text" id="child_mname"></div>
+    <div class="col"><label>Last Name</label><input type="text" id="child_lname"></div>
+</div>
+<label>Religion/Culture Practiced at Home</label>
+<input type="text" id="religion">
+<label>Language Spoken at Home</label>
+<input type="text" id="language">
+<label>Current Residential Address</label>
+<textarea id="address"></textarea>
+<label>Preferred Choice of Name (if any)</label>
+<input type="text" id="preferred_name">
+<label>Seeking Admission For</label>
+<select id="admission_grade">
+    <option>Playgroup</option>
+    <option>Nursery</option>
+    <option>L.K.G</option>
+    <option>U.K.G</option>
+    <option>One</option>
+    <option>Two</option>
+    <option>Three</option>
+    <option>Four</option>
+</select>
+
+<div class="row">
+    <div class="col">
+        <label>Transportation Needs</label>
+        <select id="transport">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+    </div>
+    <div class="col">
+        <label>Extended Care Needs</label>
+        <select id="extended_care">
+            <option>No</option>
+            <option>Yes</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col"><label>Start Time</label><input type="time" id="start_time"></div>
+    <div class="col"><label>End Time</label><input type="time" id="end_time"></div>
+</div>
+
+<!-- Parent 1 -->
+<h2>First Parent / Guardian</h2>
+<div class="row">
+    <div class="col"><label>Title</label><input type="text" id="p1_title"></div>
+    <div class="col"><label>First Name</label><input type="text" id="p1_fname"></div>
+    <div class="col"><label>Middle Name</label><input type="text" id="p1_mname"></div>
+    <div class="col"><label>Last Name</label><input type="text" id="p1_lname"></div>
+</div>
+<div class="row">
+    <div class="col"><label>Relationship to Child</label><input type="text" id="p1_relation"></div>
+    <div class="col"><label>Parental Responsibility</label>
+        <select id="p1_responsibility">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col"><label>Home Telephone</label><input type="text" id="p1_home"></div>
+    <div class="col"><label>Mobile Phone</label><input type="text" id="p1_mobile"></div>
+</div>
+<div class="row">
+    <div class="col"><label>Email Address</label><input type="email" id="p1_email"></div>
+    <div class="col"><label>Work Telephone</label><input type="text" id="p1_worktel"></div>
+</div>
+<label>Work Place</label>
+<input type="text" id="p1_workplace">
+
+<!-- Parent 2 -->
+<h2>Second Parent / Guardian</h2>
+<div class="row">
+    <div class="col"><label>Title</label><input type="text" id="p2_title"></div>
+    <div class="col"><label>First Name</label><input type="text" id="p2_fname"></div>
+    <div class="col"><label>Middle Name</label><input type="text" id="p2_mname"></div>
+    <div class="col"><label>Last Name</label><input type="text" id="p2_lname"></div>
+</div>
+<div class="row">
+    <div class="col"><label>Relationship to Child</label><input type="text" id="p2_relation"></div>
+    <div class="col"><label>Parental Responsibility</label>
+        <select id="p2_responsibility">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col"><label>Home Telephone</label><input type="text" id="p2_home"></div>
+    <div class="col"><label>Mobile Phone</label><input type="text" id="p2_mobile"></div>
+</div>
+<div class="row">
+    <div class="col"><label>Email Address</label><input type="email" id="p2_email"></div>
+    <div class="col"><label>Work Telephone</label><input type="text" id="p2_worktel"></div>
+</div>
+<label>Work Place</label>
+<input type="text" id="p2_workplace">
+
+<!-- Other Children -->
+<h2>Other Children in Family</h2>
+<textarea id="other_children" placeholder="Name(s) and DOB"></textarea>
+
+<!-- Supplementary Details -->
+<h2>Supplementary Details</h2>
+<label>Previous Child Day-Care Programs / Schools</label>
+<textarea id="schools" placeholder="If not attended, indicate N/A"></textarea>
+<label>Serious Illnesses or Injuries</label>
+<textarea id="illness"></textarea>
+<label>Immunization Completed</label>
+<textarea id="immunization"></textarea>
+<label>Allergies / Medical Conditions</label>
+<textarea id="allergies"></textarea>
+<label>Special Needs</label>
+<textarea id="special_needs"></textarea>
+<label>Potty Trained</label>
+<select id="potty_trained"><option>Yes</option><option>No</option></select>
+<label>Fears</label>
+<textarea id="fears"></textarea>
+<label>Milk / Dairy Preferences</label>
+<textarea id="milk"></textarea>
+<label>Activities the Child Prefers</label>
+<textarea id="activities"></textarea>
+<label>Food the Child Enjoys</label>
+<textarea id="food"></textarea>
+<label>Child Height</label><input type="text" id="height">
+<label>Child Weight</label><input type="text" id="weight">
+
+<h2>Person Who May Pick Up Child</h2>
+<textarea id="pickup"></textarea>
+
+<!-- Declaration -->
+<h2>Declaration</h2>
+<p>I certify that all information above is true and correct. I acknowledge that money once paid is not refundable.</p>
+<label>Parent / Guardian Name</label>
+<input type="text" id="parent_name">
+<label>Date</label>
+<input type="date" id="declaration_date">
+
+<button onclick="submitForm()">Submit Form & Generate PDF</button>
+<div class="success-msg" id="successMsg">
+Your form has been submitted successfully. Preview is shown below. Click "Download PDF" to save it.
+</div>
+
+<!-- Preview Copy -->
+<div id="previewCopy">
+<h2 style="color:#2b6fa3; text-align:center;">Admission Form Preview</h2>
+<div id="previewContent"></div>
+<button onclick="downloadPDF()">Download PDF</button>
+</div>
+
+<script>
+const { jsPDF } = window.jspdf;
+
+
+function getValue(id) {
+    const el = document.getElementById(id);
+    if (!el) return '';
+    const val = el.value ? el.value.trim() : '';
+    return val || '';
+}
+
+// Form data structure
+function getFormData() {
+    return [
+        {
+            section: "CHILD'S DETAILS",
+            fields: [
+                ['First Name', getValue('child_fname')],
+                ['Middle Name', getValue('child_mname')],
+                ['Last Name', getValue('child_lname')],
+                ['Date of Birth', getValue('dob')],
+                ['Gender', getValue('gender')],
+                ['Religion/Culture', getValue('religion')],
+                ['Language', getValue('language')],
+                ['Address', getValue('address')],
+                ['Preferred Name', getValue('preferred_name')],
+                ['Admission For', getValue('admission_grade')],
+                ['Transportation', getValue('transport')],
+                ['Extended Care', getValue('extended_care')],
+                ['Start Time', getValue('start_time')],
+                ['End Time', getValue('end_time')]
+            ]
+        },
+        {
+            section: "FIRST PARENT / GUARDIAN",
+            fields: [
+                ['Title', getValue('p1_title')],
+                ['First Name', getValue('p1_fname')],
+                ['Middle Name', getValue('p1_mname')],
+                ['Last Name', getValue('p1_lname')],
+                ['Relationship', getValue('p1_relation')],
+                ['Responsibility', getValue('p1_responsibility')],
+                ['Home Phone', getValue('p1_home')],
+                ['Mobile', getValue('p1_mobile')],
+                ['Email', getValue('p1_email')],
+                ['Work Phone', getValue('p1_worktel')],
+                ['Workplace', getValue('p1_workplace')]
+            ]
+        },
+        {
+            section: "SECOND PARENT / GUARDIAN",
+            fields: [
+                ['Title', getValue('p2_title')],
+                ['First Name', getValue('p2_fname')],
+                ['Middle Name', getValue('p2_mname')],
+                ['Last Name', getValue('p2_lname')],
+                ['Relationship', getValue('p2_relation')],
+                ['Responsibility', getValue('p2_responsibility')],
+                ['Home Phone', getValue('p2_home')],
+                ['Mobile', getValue('p2_mobile')],
+                ['Email', getValue('p2_email')],
+                ['Work Phone', getValue('p2_worktel')],
+                ['Workplace', getValue('p2_workplace')]
+            ]
+        },
+        {
+            section: "OTHER CHILDREN",
+            fields: [
+                ['Other Children', getValue('other_children')]
+            ]
+        },
+        {
+            section: "SUPPLEMENTARY DETAILS",
+            fields: [
+                ['Previous Schools', getValue('schools')],
+                ['Illnesses/Injuries', getValue('illness')],
+                ['Immunization', getValue('immunization')],
+                ['Allergies', getValue('allergies')],
+                ['Special Needs', getValue('special_needs')],
+                ['Potty Trained', getValue('potty_trained')],
+                ['Fears', getValue('fears')],
+                ['Milk Preferences', getValue('milk')],
+                ['Preferred Activities', getValue('activities')],
+                ['Food Preferences', getValue('food')],
+                ['Height', getValue('height')],
+                ['Weight', getValue('weight')]
+            ]
+        },
+        {
+            section: "EMERGENCY CONTACT",
+            fields: [
+                ['Pickup Person', getValue('pickup')]
+            ]
+        },
+        {
+            section: "DECLARATION",
+            fields: [
+                ['Parent Name', getValue('parent_name')],
+                ['Date', getValue('declaration_date')]
+            ]
+        }
+    ];
+}
+
+// Generate preview HTML
+function generatePreview() {
+    const data = getFormData();
+    let html = '';
+    
+    data.forEach(section => {
+        html += `<div class="section-header">${section.section}</div>`;
+        html += `<table class="preview-table">`;
+        section.fields.forEach(([label, value]) => {
+            html += `
+                <tr>
+                    <td>${label}</td>
+                    <td>${value || '—'}</td>
+                </tr>
+            `;
+        });
+        html += `</table>`;
+    });
+    
+    return html;
+}
+
+// Submit form
+function submitForm() {
+    const child_name = getValue('child_fname') + ' ' + getValue('child_mname') + ' ' + getValue('child_lname');
+    const parentName = getValue('p1_fname') + ' ' + getValue('p1_lname');
+    const admissionGrade = getValue('admission_grade');
+    const address = getValue('address');
+    const mobile = getValue('p1_mobile');
+
+    // Generate and show preview
+    document.getElementById('previewContent').innerHTML = generatePreview();
+    document.getElementById('previewCopy').style.display = 'block';
+    document.getElementById('successMsg').style.display = 'block';
+    
+    setTimeout(() => {
+        document.getElementById('previewCopy').scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+
+    alert('Form submitted!\n\nClick "Download PDF" below to save your form.');
+
+    // Send email
+    emailjs.send("service_h98k03b", "template_a1nsfia", {
+        parent_name: parentName,
+        child_name: child_name,
+        admission_class: admissionGrade,
+        address: address,
+        mobile: mobile
+    })
+    .then(response => console.log("Email sent!", response.status))
+    .catch(err => console.error("Email failed:", err));
+}
+
+function downloadPDF() {
+    try {
+        console.log("Starting PDF generation with jsPDF...");
+        
+        const doc = new jsPDF();
+        const data = getFormData();
+        
+        // Title
+        doc.setFontSize(18);
+        doc.setTextColor(43, 111, 163);
+        doc.text('ADMISSION / REGISTRATION FORM', 105, 20, { align: 'center' });
+        
+        let yPos = 35;
+        
+        data.forEach((section, idx) => {
+            if (yPos > 250) {
+                doc.addPage();
+                yPos = 20;
+            }
+            
+            // Section header
+            doc.setFillColor(43, 111, 163);
+            doc.rect(15, yPos - 5, 180, 8, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(11);
+            doc.text(section.section, 17, yPos);
+            yPos += 10;
+            
+            // Table data
+            const tableData = section.fields.map(([label, value]) => [label, value || '—']);
+            
+            doc.autoTable({
+                startY: yPos,
+                head: [],
+                body: tableData,
+                theme: 'grid',
+                styles: { fontSize: 9, cellPadding: 3 },
+                columnStyles: {
+                    0: { cellWidth: 60, fontStyle: 'bold', fillColor: [245, 245, 245] },
+                    1: { cellWidth: 120 }
+                },
+                margin: { left: 15, right: 15 }
+            });
+            
+            yPos = doc.lastAutoTable.finalY + 10;
+        });
+        
+        doc.save('Admission_Form.pdf');
+        console.log("PDF saved successfully!");
+        
+    } catch (error) {
+        console.error("PDF Error:", error);
+        alert("Error creating PDF: " + error.message);
+    }
+}
+</script>
+
+</body>
+</html>

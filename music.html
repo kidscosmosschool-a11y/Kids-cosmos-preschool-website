@@ -160,16 +160,28 @@ body {
     box-shadow: 0 18px 35px rgba(0,0,0,0.15);
 }
 
-/* Image placeholder */
+/* Image placeholder container */
 .card-img {
     height: 160px;
     border-radius: 12px;
     background: linear-gradient(135deg, #d4ecff, #f4fbff);
+    margin-bottom: 10px;
+    
+    /* CRITICAL: This ensures the image doesn't stick out past the rounded corners */
+    overflow: hidden; 
+    
+    /* Flex is kept here in case you want to center an icon if the image is missing */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 40px;
-    margin-bottom: 10px;
+}
+
+/* New rule to make the image fit */
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Ensures the image fills the box without stretching/distortion */
+    display: block;     /* Removes tiny gap at bottom of images */
 }
 
 .card p {
@@ -215,7 +227,7 @@ body {
 
     <!-- Email (icon + text together) -->
     <div class="mail">
-    <span><i class="fa fa-envelope me-2"></i> upadhyaya9sheelu@gmail.com</span>
+    <span><i class="fa fa-envelope me-2"></i> kidscosmosschool@gmail.com</span>
 </div>
 
     <!-- Social Icons -->
@@ -266,7 +278,7 @@ body {
                     <a href="dramas.html" class="dropdown-item" style="padding:10px 20px;">🎬Dramas</a>
             </div>
             </div>
-            <a href="team.html" class="nav-item nav-link" style="font-weight:500;">Our Team</a>
+      
             <a href="gallery.html" class="nav-item nav-link" style="font-weight:500;">Gallery</a>
             <a href="blog.html" class="nav-item nav-link" style="font-weight:500;">Blog</a>
             <a href="contact.html" class="nav-item nav-link" style="font-weight:500;">Contact</a>
@@ -291,7 +303,7 @@ body {
 
     <div class="section-header">
         <h1>Music & Dance</h1>
-        <p>Where rhythm, movement, and joy come together</p>
+        <p>A high-energy session focused on coordination and balance. Kids learn teamwork and self-expression through creative movement and choreography. </p>
     </div>
 
     <!-- MUSIC -->
@@ -299,19 +311,27 @@ body {
         <h2>Music Activities</h2>
         <div class="card-grid">
             <div class="card">
-                <div class="card-img">🎵</div>
+                <div class="card-img">
+                    <img src="img/m2.jpg" alt="">
+                </div>
                 <p>Vocal Training</p>
             </div>
             <div class="card">
-                <div class="card-img">🎹</div>
+                <div class="card-img">
+                    <img src="img/m1.jpg" alt="">
+                </div>
                 <p>Keyboard Practice</p>
             </div>
             <div class="card">
-                <div class="card-img">🥁</div>
+                <div class="card-img">
+                    <img src="img/m3.jpg" alt="">
+                </div>
                 <p>Rhythm & Beats</p>
             </div>
             <div class="card">
-                <div class="card-img">🎼</div>
+                <div class="card-img">
+                    <img src="img/m4.jpg" alt="">
+                </div>
                 <p>Music Appreciation</p>
             </div>
         </div>
@@ -322,19 +342,27 @@ body {
         <h2>Dance Activities</h2>
         <div class="card-grid">
             <div class="card">
-                <div class="card-img">💃</div>
+                <div class="card-img">
+                    <img src="img/d1.jpg" alt="">
+                </div>
                 <p>Creative Movement</p>
             </div>
             <div class="card">
-                <div class="card-img">🕺</div>
+                <div class="card-img">
+                    <img src="img/d2.jpg" alt="">
+                </div>
                 <p>Classical Basics</p>
             </div>
             <div class="card">
-                <div class="card-img">🎶</div>
+                <div class="card-img">
+                    <img src="img/d3.jpg" alt="">
+                </div>
                 <p>Free Dance</p>
             </div>
             <div class="card">
-                <div class="card-img">🌟</div>
+                <div class="card-img">
+                    <img src="img/d4.jpg" alt="">
+                </div>
                 <p>Stage Performance</p>
             </div>
         </div>

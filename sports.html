@@ -147,14 +147,26 @@ body {
 }
 
 .card-img {
-    height:160px;
-    border-radius:12px;
-    background: linear-gradient(135deg,#d4ecff,#f4fbff);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:40px;
-    margin-bottom:10px;
+    height: 160px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #d4ecff, #f4fbff);
+    margin-bottom: 10px;
+    
+    /* ADD THIS: Clips the image to the rounded corners */
+    overflow: hidden; 
+    
+    /* Flexbox is kept to center alt text if image fails to load */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ADD THIS: Forces image to fill the container */
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image fills box without stretching */
+    display: block;    /* Removes bottom whitespace glitch */
 }
 
 .card p { font-size:16px; color:#333; }
@@ -185,7 +197,7 @@ body {
 
     <!-- Email (icon + text together) -->
     <div class="mail">
-    <span><i class="fa fa-envelope me-2"></i> upadhyaya9sheelu@gmail.com</span>
+    <span><i class="fa fa-envelope me-2"></i> kidscosmosschool@gmail.com</span>
 </div>
 
     <!-- Social Icons -->
@@ -237,7 +249,7 @@ body {
                 </div>
             </div>
 
-            <a href="team.html" class="nav-item nav-link" style="font-weight:500;">Our Team</a>
+            
             <a href="gallery.html" class="nav-item nav-link" style="font-weight:500;">Gallery</a>
             <a href="blog.html" class="nav-item nav-link" style="font-weight:500;">Blog</a>
             <a href="contact.html" class="nav-item nav-link" style="font-weight:500;">Contact</a>
@@ -267,16 +279,30 @@ body {
     <div class="card-section">
         <h2>Our Sports Activities</h2>
         <div class="card-grid">
-            <div class="card"><div class="card-img">⚽</div><p>Football</p></div>
-            <div class="card"><div class="card-img">🏀</div><p>Basketball</p></div>
-            <div class="card"><div class="card-img">🏐</div><p>Volleyball</p></div>
-            <div class="card"><div class="card-img">🏏</div><p>Cricket</p></div>
-            <div class="card"><div class="card-img">🎾</div><p>Tennis</p></div>
-            <div class="card"><div class="card-img">🏓</div><p>Table Tennis</p></div>
-            <div class="card"><div class="card-img">🤾‍♂️</div><p>Handball</p></div>
-            <div class="card"><div class="card-img">🥋</div><p>Martial Arts</p></div>
-            <div class="card"><div class="card-img">🏊‍♂️</div><p>Swimming</p></div>
-            <div class="card"><div class="card-img">🚴‍♂️</div><p>Cycling</p></div>
+            <div class="card"><div class="card-img">
+                <img src="img/sp3.jpg" alt="">
+            </div><p>Football</p></div>
+            <div class="card"><div class="card-img">
+                <img src="img/sp1.jpg" alt="">
+            </div><p>Basketball</p></div>
+            <div class="card"><div class="card-img">
+                <img src="img/sp2.jpg" alt="">
+            </div><p>Volleyball</p></div>
+            <div class="card"><div class="card-img">
+                <img src="img/sp4.jpg" alt="">
+            </div><p>Cricket</p></div>
+            <div class="card"><div class="card-img">
+                <img src="img/sp5.jpg" alt="">
+            </div><p>Tennis</p></div>
+            <div class="card"><div class="card-img">
+                <img src="img/sp6.jpg" alt="">
+            </div><p>Table Tennis</p></div>
+            <div class="card"><div class="card-img">
+                <img src="img/sp7.jpg" alt="">
+            </div><p>Handball</p></div>
+            <div class="card"><div class="card-img">
+                <img src="img/sp.jpg" alt="">
+            </div><p>Martial Arts</p></div>
         </div>
     </div>
 </div>
